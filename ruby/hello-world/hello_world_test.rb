@@ -1,7 +1,7 @@
-#!/usr/bin/env ruby
 begin
   gem 'minitest', '>= 5.0.0'
   require 'minitest/autorun'
+  require 'minitest/pride'
   require_relative 'hello_world'
 rescue Gem::LoadError => e
   puts "\nMissing Dependency:\n#{e.backtrace.first} #{e.message}"
@@ -26,14 +26,12 @@ class HelloWorldTest < Minitest::Test
   end
 
   def test_other_sample_name
-    skip
     assert_equal 'Hello, Bob!', HelloWorld.hello('Bob'), <<-MSG
     When given "Bob" it should greet Bob!
     MSG
   end
 
   def test_no_strange_name
-    skip
     assert_equal 'Hello, !', HelloWorld.hello(''), <<-MSG
     When given an empty string it should have a space
     and punctuation, though admittedly this is strange.
