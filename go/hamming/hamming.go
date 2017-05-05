@@ -2,7 +2,6 @@ package hamming
 
 import (
 	"errors"
-	"strings"
 )
 
 const testVersion = 6
@@ -14,11 +13,8 @@ func Distance(a, b string) (int, error) {
 
 	distance := 0
 
-	s1 := strings.Split(a, "")
-	s2 := strings.Split(b, "")
-
-	for i := 0; i < len(s1); i++ {
-		if s1[i] != s2[i] {
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
 			distance++
 		}
 	}
