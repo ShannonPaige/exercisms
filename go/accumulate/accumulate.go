@@ -2,11 +2,11 @@ package accumulate
 
 const testVersion = 1
 
-func Accumulate(poop []string, crap func(string) string) []string {
-	accumulation := make([]string, len(poop))
+func Accumulate(data []string, function func(string) string) []string {
+	accumulation := make([]string, len(data))
 
-	for i := 0; i < len(poop); i++ {
-		accumulation[i] = crap(poop[i])
+	for i := 0; i < len(data); i++ {
+		accumulation[i] = function(data[i])
 	}
 
 	return accumulation
