@@ -4,21 +4,27 @@ import "strconv"
 
 const testVersion = 3
 
+type Rain struct {
+	number   int
+	sound    string
+}
+
 func Convert(x int) string {
-	rain := ""
+	rain := Rain{x, ""}
 
-	if x%3 == 0 {
-		rain += "Pling"
-	}
-	if x%5 == 0 {
-		rain += "Plang"
-	}
-	if x%7 == 0 {
-		rain += "Plong"
-	}
-	if rain == "" {
-		rain = strconv.Itoa(x)
+  rain.AppendSound(3, "Pling")
+  rain.AppendSound(5, "Plang")
+  rain.AppendSound(7, "Plong")
+
+	if rain.sound == "" {
+		rain.sound = strconv.Itoa(x)
 	}
 
-	return rain
+	return rain.sound
+}
+
+func (rain *Rain) AppendSound(factor int, pl string) {
+  if rain.number % factor == 0 {
+    rain.sound += pl
+  }
 }
