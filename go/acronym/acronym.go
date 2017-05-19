@@ -10,10 +10,9 @@ const testVersion = 2
 func Abbreviate(fullPhrase string) string {
 	acroynm := ""
 
-	re := regexp.MustCompile("([a-z])([A-Z])")
-	fullPhrase = re.ReplaceAllString(fullPhrase, "$1 $2")
-
-	fullPhrase = strings.Replace(fullPhrase, "-", " ", -1)
+  fullPhrase = BreakOnCapitals(fullPhrase)
+	fullPhrase = ReplaceHyphens(fullPhrase)
+  
 	words := strings.Split(fullPhrase, " ")
 
 	for i := 0; i < len(words); i++ {
@@ -23,4 +22,13 @@ func Abbreviate(fullPhrase string) string {
 	}
 
 	return acroynm
+}
+
+func BreakOnCapitals(fullPhrase string) string {
+  re := regexp.MustCompile("([a-z])([A-Z])")
+  return re.ReplaceAllString(fullPhrase, "$1 $2")
+}
+
+func ReplaceHyphens(fullPhrase string) string {
+  return strings.Replace(fullPhrase, "-", " ", -1)
 }
